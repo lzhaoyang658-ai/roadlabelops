@@ -1,0 +1,56 @@
+name: 缺陷报告
+description: 报告可复现的 RoadLabelOps 行为问题
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。安全漏洞或任何包含凭证、用户数据的内容，请不要公开提交；请改用 SECURITY.md 中的私密渠道。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题描述
+      description: 说明实际行为及其影响。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 提供可以使用公开或脱敏数据执行的最小步骤。
+      placeholder: |
+        1. 运行 …
+        2. 打开 …
+        3. 观察到 …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境
+      description: 操作系统、Python、Node.js、浏览器、CVAT 和 RoadLabelOps 版本或提交。
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 脱敏日志或截图
+      description: 请先移除令牌、用户名、本机绝对路径和私有数据。
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交确认
+      options:
+        - label: 我已搜索现有 Issue，未发现相同报告。
+          required: true
+        - label: 此报告不包含安全漏洞、凭证、个人信息或私有数据。
+          required: true

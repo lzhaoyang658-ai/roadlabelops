@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "roadlabelops"
+version = "0.1.0"
+description = "A recoverable road-scene labeling workflow around CVAT"
+readme = "README.md"
+authors = [{ name = "未来。" }]
+license = "AGPL-3.0-only"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = [
+  "cvat-sdk>=2.42,<3",
+  "fastapi>=0.116,<1",
+  "httpx>=0.28,<1",
+  "pydantic>=2.11,<3",
+  "pydantic-settings>=2.10,<3",
+  "python-multipart>=0.0.20,<1",
+  "PyYAML>=6.0,<7",
+  "uvicorn[standard]>=0.35,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=9.0.3,<10",
+  "pytest-cov>=6.2,<7",
+  "ruff>=0.12,<1",
+]
+detection = ["ultralytics>=8.3,<9"]
+
+[project.scripts]
+roadlabelops = "roadlabelops.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/lzhaoyang658-ai/roadlabelops"
+Repository = "https://github.com/lzhaoyang658-ai/roadlabelops"
+Issues = "https://github.com/lzhaoyang658-ai/roadlabelops/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["roadlabelops"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"config/road_labels.yaml" = "roadlabelops/config/road_labels.yaml"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+ignore = [
+  "BLE001", # Tool and integration boundaries must normalize unknown provider errors.
+  "S112",   # Hooks are isolated by design; one observer cannot break the workflow.
+]

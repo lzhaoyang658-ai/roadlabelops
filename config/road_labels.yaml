@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+labels:
+  - name: car
+  - name: bus
+  - name: truck
+  - name: motorcycle
+  - name: bicycle
+  - name: pedestrian
+  - name: traffic_light
+  - name: traffic_sign
+attributes:
+  occlusion: [none, partial, heavy]
+  motion: [moving, stopped, parked, unknown]
+  direction: [same, opposite, crossing, unknown]
+scene_tags:
+  lighting: [day, night]
+  weather: [clear, rain, fog]
+  road_type: [urban, highway, intersection]
+  traffic_density: [low, medium, high]
+model_mapping:
+  person: pedestrian
+  car: car
+  bus: bus
+  truck: truck
+  motorcycle: motorcycle
+  bicycle: bicycle
